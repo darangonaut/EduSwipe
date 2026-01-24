@@ -1,0 +1,50 @@
+[
+  {
+    "id": "c1",
+    "type": "fact",
+    "title": "Vesmir",
+    "content": "Slnko tvori 99.8% hmotnosti celej nasej slnecnej sustavy.",
+    "color": "#ff4757"
+  },
+  {
+    "id": "c2",
+    "type": "quiz",
+    "question": "Je Pluto momentalne povazovane za planetu?",
+    "options": ["Ano", "Nie"],
+    "answer": 1,
+    "explanation": "Pluto bolo v roku 2006 preradene medzi trpaslicie planety.",
+    "color": "#5352ed"
+  },
+  {
+    "id": "c3",
+    "type": "fact",
+    "title": "Ludske telo",
+    "content": "Ludske telo obsahuje priblizne 206 kosti. Pri narodeni ich mame viac - az 270!",
+    "color": "#2ed573"
+  },
+  {
+    "id": "c4",
+    "type": "quiz",
+    "question": "Kolko percent Zeme pokryva voda?",
+    "options": ["50%", "71%", "85%"],
+    "answer": 1,
+    "explanation": "Priblizne 71% povrchu Zeme je pokrytych vodou.",
+    "color": "#1e90ff"
+  },
+  {
+    "id": "c5",
+    "type": "fact",
+    "title": "Dinosaury",
+    "content": "Dinosaury zili na Zemi priblizne 165 milionov rokov - ludia existuju iba 200 000 rokov.",
+    "color": "#ff6b81"
+  },
+  {
+    "id": "c6",
+    "type": "quiz",
+    "question": "Ktore zviera je najrychlejsie na svete?",
+    "options": ["Lev", "Gepard", "Orol"],
+    "answer": 1,
+    "explanation": "Gepard moze bezat rychlostou az 120 km/h!",
+    "color": "#ffa502"
+  }
+]
