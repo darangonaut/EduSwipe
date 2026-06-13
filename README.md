@@ -4,15 +4,17 @@ Vzdělávací PWA pro děti, která využívá návykový formát **vertikální
 
 ## ✨ Funkce
 
-- **Více kurzů** – domovská obrazovka s výběrem kurzu, samostatný feed pro každý
+- **Více kurzů** (Vesmír, Zvířata, Příroda a tělo, Matematika) – domovská obrazovka s výběrem, rekordem a odznakem dokončení u každého
 - **Vertikální swipe feed** mezi kartami (dotyk, kolečko myši, klávesy ↑/↓)
-- **Dva typy karet** – fakt (text + emoji) a kvíz (A/B/C volba s okamžitou zpětnou vazbou a vysvětlením)
+- **Dva typy karet** – fakt (text + emoji, čtení nahlas) a kvíz (A/B/C volba s okamžitou zpětnou vazbou a vysvětlením)
+- **Ovládání kvízu klávesami** 1–3 (na aktivní kartě)
+- **Zvuková + haptická odezva** na odpověď
 - **Zámek postupu** – na nezodpovězeném kvízu se nedá pokračovat dál
-- **Skóre a rekord** – počítání správných odpovědí + nejlepší výsledek (uložený v `localStorage`)
-- **Uložený pokrok** – odpovědi přežijí reload; tlačítko *Zkusit znovu* je vymaže
-- **Závěrečná karta** s výsledkem a restartem
+- **Skóre, rekord a statistiky** napříč kurzy (uložené v `localStorage`, per kurz); reset pokroku z domovské obrazovky
+- **Uložený pokrok** – odpovědi přežijí reload; *Zkusit znovu* zamíchá pořadí
+- **Závěrečná karta** s rozpisem výsledku, konfetami a restartem
 - **PWA** – instalovatelná na plochu, offline přes service worker
-- **Přístupnost** – ovládání klávesnicí, respekt k `prefers-reduced-motion`
+- **Robustnost a přístupnost** – error boundary, ovládání klávesnicí, ARIA, respekt k `prefers-reduced-motion`
 
 ## 🚀 Spuštění
 
@@ -97,10 +99,11 @@ Každá karta v `lessons` je fakt nebo kvíz:
 - `Home.jsx` – výběr kurzu (s nejlepším skóre u každého)
 - `Course.jsx` – feed jednoho kurzu: Swiper, skóre/pokrok, zámek, perzistence (per kurz)
 - `CardRenderer.jsx` – rozhodne mezi `InfoCard` a `QuizCard`
-- `InfoCard.jsx` – textová/obrázková karta
-- `QuizCard.jsx` – interaktivní kvíz se zpětnou vazbou
-- `ProgressBar.jsx` – indikátor postupu + skóre
+- `InfoCard.jsx` – textová/obrázková karta (čtení nahlas)
+- `QuizCard.jsx` – interaktivní kvíz (klávesy, zvuk, haptika)
+- `ProgressBar.jsx` – indikátor postupu + skóre + zpět/restart
 - `ResultCard.jsx` – závěrečné shrnutí a restart
+- `ErrorBoundary.jsx` – záchytná obrazovka při chybě
 
 ## 🔮 Možná rozšíření
 
