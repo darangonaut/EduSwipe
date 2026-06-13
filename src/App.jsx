@@ -22,6 +22,10 @@ function App() {
 
   const score = Object.values(answered).filter(Boolean).length
 
+  // Zamknut posun dopredu na nezodpovedanom kvizu
+  const currentCard = lessons[currentIndex]
+  const locked = currentCard?.type === 'quiz' && !(currentCard.id in answered)
+
   return (
     <div className="h-screen w-screen overflow-hidden bg-black">
       <ProgressBar current={currentIndex} total={lessons.length} score={score} />
@@ -30,6 +34,7 @@ function App() {
         direction="vertical"
         slidesPerView={1}
         mousewheel={true}
+        allowSlideNext={!locked}
         modules={[Mousewheel]}
         onSlideChange={handleSlideChange}
         className="h-full w-full"
