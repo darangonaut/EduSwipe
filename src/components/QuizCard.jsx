@@ -1,5 +1,30 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
+// Krátký tón jako zpětná vazba (sdílený AudioContext, lazy)
+let audioCtx
+const playTone = (correct) => {
+  try {
+    const Ctx = window.AudioContext || window.webkitAudioContext
+    if (!Ctx) return
+    audioCtx = audioCtx || new Ctx()
+    if (audioCtx.state === 'suspended') audioCtx.resume()
+    const osc = audioCtx.createOscillator()
+    const gain = audioCtx.createGain()
+    osc.connect(gain)
+    gain.connect(audioCtx.destination)
+    osc.type = 'sine'
+    osc.frequency.value = correct ? 880 : 200
+    const t = audioCtx.currentTime
+    gain.gain.setValueAtTime(0.0001, t)
+    gain.gain.exponentialRampToValueAtTime(0.18, t + 0.01)
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.25)
+    osc.start(t)
+    osc.stop(t + 0.26)
+  } catch {
+    /* audio nedostupne */
+  }
+}
+
 export default function QuizCard({ question, options, answer, explanation, emoji, topic, color, initialSelected = null, onAnswer }) {
   const [selected, setSelected] = useState(initialSelected)
   const rootRef = useRef(null)
@@ -8,10 +33,11 @@ export default function QuizCard({ question, options, answer, explanation, emoji
     if (selected !== null) return
     const correct = index === answer
     setSelected(index)
-    // Hapticka odozva (jen kde je podporovana)
+    // Hapticka + zvukova odozva (jen kde je podporovana)
     if (typeof navigator !== 'undefined' && navigator.vibrate) {
       navigator.vibrate(correct ? 30 : [40, 30, 40])
     }
+    playTone(correct)
     if (onAnswer) {
       onAnswer(index, correct)
     }
