@@ -60,10 +60,15 @@ export default function QuizCard({ question, options, answer, explanation, emoji
           ))}
         </div>
 
+        {/* Oznámení výsledku pro čtečky obrazovky */}
+        <p className="sr-only" role="status" aria-live="polite">
+          {selected === null ? '' : selected === answer ? 'Správně!' : 'Špatně.'}
+        </p>
+
         {selected === null ? (
           <p className="mt-8 text-sm text-white/70">Vyber odpověď a pokračuj dál 👆</p>
         ) : (
-          <div className="mt-8 p-5 bg-white/20 backdrop-blur-sm rounded-2xl">
+          <div className="mt-8 p-5 bg-white/20 backdrop-blur-sm rounded-2xl" role="status">
             <p className="text-lg leading-relaxed text-white/95">{explanation}</p>
           </div>
         )}
