@@ -46,15 +46,15 @@ export default function Home({ onSelect }) {
         </p>
 
         <div className="space-y-4">
-          {courses.map((course) => {
+          {courses.map((course, index) => {
             const quizzes = course.lessons.filter((c) => c.type === 'quiz').length
             const best = bestFor(course.id)
             return (
               <button
                 key={course.id}
                 onClick={() => onSelect(course)}
-                className="flex w-full items-center gap-4 rounded-2xl p-5 text-left shadow-lg transition-transform hover:scale-[1.02] active:scale-95"
-                style={{ backgroundColor: course.color }}
+                className="home-card flex w-full items-center gap-4 rounded-2xl p-5 text-left shadow-lg transition-transform hover:scale-[1.02] active:scale-95"
+                style={{ backgroundColor: course.color, animationDelay: `${index * 0.06}s` }}
               >
                 <span className="text-4xl">{course.emoji}</span>
                 <span className="flex-1">
