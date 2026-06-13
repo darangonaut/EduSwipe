@@ -7,7 +7,7 @@ export default function InfoCard({ title, content, image, emoji, topic, color })
       {/* Jemny gradient pre hlbku */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-transparent to-black/30" />
 
-      <div className="relative z-10 flex flex-col items-center max-w-md">
+      <div className="card-content relative z-10 flex flex-col items-center max-w-md">
         {topic && (
           <span className="mb-6 px-3 py-1 rounded-full bg-white/20 text-xs font-semibold uppercase tracking-wide">
             {topic}

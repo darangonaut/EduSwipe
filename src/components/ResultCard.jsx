@@ -12,7 +12,7 @@ export default function ResultCard({ score, total, best = 0, onRetry }) {
     <div className="relative h-full w-full flex flex-col items-center justify-center px-6 py-10 text-white text-center overflow-hidden bg-gradient-to-br from-violet-600 to-fuchsia-600">
       <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-transparent to-black/30" />
 
-      <div className="relative z-10 flex flex-col items-center max-w-md">
+      <div className="card-content relative z-10 flex flex-col items-center max-w-md">
         <div className="text-7xl mb-6 drop-shadow-md">{perfect ? '🏆' : '🎉'}</div>
 
         <h2 className="text-4xl font-extrabold mb-4 tracking-tight drop-shadow-sm">Hotovo!</h2>
