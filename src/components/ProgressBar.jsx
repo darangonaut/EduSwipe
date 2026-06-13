@@ -1,4 +1,4 @@
-export default function ProgressBar({ current, total }) {
+export default function ProgressBar({ current, total, score = 0 }) {
   const progress = ((current + 1) / total) * 100
 
   return (
@@ -10,6 +10,9 @@ export default function ProgressBar({ current, total }) {
             style={{ width: `${progress}%` }}
           />
         </div>
+        {score > 0 && (
+          <span className="text-white text-sm font-semibold">⭐ {score}</span>
+        )}
         <span className="text-white text-sm font-medium">
           {current + 1}/{total}
         </span>

@@ -10,7 +10,7 @@ export default function CardRenderer({ card, onAnswer }) {
         answer={card.answer}
         explanation={card.explanation}
         color={card.color}
-        onAnswer={onAnswer}
+        onAnswer={onAnswer ? (isCorrect) => onAnswer(card.id, isCorrect) : undefined}
       />
     )
   }

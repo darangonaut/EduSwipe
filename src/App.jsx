@@ -9,14 +9,22 @@ import lessons from './data/lessons.json'
 
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [answered, setAnswered] = useState({})
 
   const handleSlideChange = (swiper) => {
     setCurrentIndex(swiper.activeIndex)
   }
 
+  // Zaznamenat odpoved jen jednou na kartu (idempotentni)
+  const handleAnswer = (id, isCorrect) => {
+    setAnswered((prev) => (id in prev ? prev : { ...prev, [id]: isCorrect }))
+  }
+
+  const score = Object.values(answered).filter(Boolean).length
+
   return (
     <div className="h-screen w-screen overflow-hidden bg-black">
-      <ProgressBar current={currentIndex} total={lessons.length} />
+      <ProgressBar current={currentIndex} total={lessons.length} score={score} />
 
       <Swiper
         direction="vertical"
@@ -28,7 +36,7 @@ function App() {
       >
         {lessons.map((card) => (
           <SwiperSlide key={card.id}>
-            <CardRenderer card={card} />
+            <CardRenderer card={card} onAnswer={handleAnswer} />
           </SwiperSlide>
         ))}
       </Swiper>
