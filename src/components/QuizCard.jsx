@@ -1,13 +1,13 @@
 import { useState } from 'react'
 
-export default function QuizCard({ question, options, answer, explanation, emoji, color, onAnswer }) {
-  const [selected, setSelected] = useState(null)
+export default function QuizCard({ question, options, answer, explanation, emoji, color, initialSelected = null, onAnswer }) {
+  const [selected, setSelected] = useState(initialSelected)
 
   const handleSelect = (index) => {
     if (selected !== null) return
     setSelected(index)
     if (onAnswer) {
-      onAnswer(index === answer)
+      onAnswer(index, index === answer)
     }
   }
 

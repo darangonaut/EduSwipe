@@ -1,7 +1,7 @@
 import InfoCard from './InfoCard'
 import QuizCard from './QuizCard'
 
-export default function CardRenderer({ card, onAnswer }) {
+export default function CardRenderer({ card, answered, onAnswer }) {
   if (card.type === 'quiz') {
     return (
       <QuizCard
@@ -11,7 +11,8 @@ export default function CardRenderer({ card, onAnswer }) {
         explanation={card.explanation}
         emoji={card.emoji}
         color={card.color}
-        onAnswer={onAnswer ? (isCorrect) => onAnswer(card.id, isCorrect) : undefined}
+        initialSelected={answered ? answered.selected : null}
+        onAnswer={onAnswer ? (selected, isCorrect) => onAnswer(card.id, selected, isCorrect) : undefined}
       />
     )
   }

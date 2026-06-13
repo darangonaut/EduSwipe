@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Mousewheel } from 'swiper/modules'
 import 'swiper/css'
@@ -9,29 +9,52 @@ import ResultCard from './components/ResultCard'
 import lessons from './data/lessons.json'
 
 const totalQuizzes = lessons.filter((c) => c.type === 'quiz').length
+const STORAGE_KEY = 'eduswipe-progress'
+
+const loadAnswered = () => {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}
+  } catch {
+    return {}
+  }
+}
 
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [answered, setAnswered] = useState({})
+  const [answered, setAnswered] = useState(loadAnswered)
   const [attempt, setAttempt] = useState(0)
+
+  // Perzistence pokroku do localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(answered))
+    } catch {
+      /* storage nedostupny */
+    }
+  }, [answered])
 
   const handleSlideChange = (swiper) => {
     setCurrentIndex(swiper.activeIndex)
   }
 
   // Zaznamenat odpoved jen jednou na kartu (idempotentni)
-  const handleAnswer = (id, isCorrect) => {
-    setAnswered((prev) => (id in prev ? prev : { ...prev, [id]: isCorrect }))
+  const handleAnswer = (id, selected, isCorrect) => {
+    setAnswered((prev) => (id in prev ? prev : { ...prev, [id]: { selected, correct: isCorrect } }))
   }
 
-  // Reset: remount Swiperu (key) vrati na zacatek a vycisti stav karet
+  // Reset: vycistit stav, smazat storage a remountovat Swiper
   const handleRetry = () => {
     setAnswered({})
+    try {
+      localStorage.removeItem(STORAGE_KEY)
+    } catch {
+      /* storage nedostupny */
+    }
     setCurrentIndex(0)
     setAttempt((a) => a + 1)
   }
 
-  const score = Object.values(answered).filter(Boolean).length
+  const score = Object.values(answered).filter((a) => a.correct).length
 
   // Zamknut posun dopredu na nezodpovedanom kvizu
   const currentCard = lessons[currentIndex]
@@ -53,7 +76,7 @@ function App() {
       >
         {lessons.map((card) => (
           <SwiperSlide key={card.id}>
-            <CardRenderer card={card} onAnswer={handleAnswer} />
+            <CardRenderer card={card} answered={answered[card.id]} onAnswer={handleAnswer} />
           </SwiperSlide>
         ))}
 
