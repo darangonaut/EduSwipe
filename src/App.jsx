@@ -108,7 +108,7 @@ function App() {
 
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-black">
-      <ProgressBar current={currentIndex} total={lessons.length + 1} score={score} />
+      <ProgressBar current={currentIndex} total={lessons.length + 1} score={score} onRestart={handleRetry} />
 
       {currentIndex === 0 && (
         <div className="pointer-events-none absolute bottom-8 left-0 right-0 z-20 flex flex-col items-center text-white/90 animate-bounce">
