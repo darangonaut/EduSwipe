@@ -31,6 +31,17 @@ body {
   animation: cardIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Konfety při dokonalém skóre */
+@keyframes confettiFall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0.8; }
+}
+
+.confetti {
+  top: 0;
+  animation: confettiFall 2.6s linear infinite;
+}
+
 /* Respektovat preferenci omezeného pohybu */
 @media (prefers-reduced-motion: reduce) {
   *, .animate-bounce {

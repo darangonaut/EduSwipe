@@ -14,6 +14,20 @@ export default function ResultCard({ score, total, best = 0, onRetry }) {
     <div className="relative h-full w-full flex flex-col items-center justify-center px-6 py-10 text-white text-center overflow-hidden bg-gradient-to-br from-violet-600 to-fuchsia-600">
       <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-transparent to-black/30" />
 
+      {perfect && (
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          {['🎉', '⭐', '🎊', '✨', '🏆', '🎉', '⭐', '✨'].map((e, i) => (
+            <span
+              key={i}
+              className="confetti absolute text-2xl"
+              style={{ left: `${(i * 12 + 5) % 100}%`, animationDelay: `${(i % 4) * 0.3}s` }}
+            >
+              {e}
+            </span>
+          ))}
+        </div>
+      )}
+
       <div className="card-content relative z-10 flex flex-col items-center max-w-md">
         <div className="text-7xl mb-6 drop-shadow-md">{perfect ? '🏆' : '🎉'}</div>
 
