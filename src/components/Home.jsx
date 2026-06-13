@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import courses from '../data/courses.json'
 
 const bestFor = (id) => {
@@ -17,6 +17,20 @@ export default function Home({ onSelect }) {
     const meta = document.querySelector('meta[name="theme-color"]')
     if (meta) meta.setAttribute('content', '#171717')
   }, [])
+
+  const [, setVersion] = useState(0)
+
+  const resetAll = () => {
+    if (!window.confirm('Opravdu vymazat veškerý pokrok a rekordy?')) return
+    try {
+      Object.keys(localStorage)
+        .filter((k) => k.startsWith('eduswipe-'))
+        .forEach((k) => localStorage.removeItem(k))
+    } catch {
+      /* storage nedostupny */
+    }
+    setVersion((v) => v + 1)
+  }
 
   const totalQuizzes = courses.reduce((s, c) => s + quizCount(c), 0)
   const totalBest = courses.reduce((s, c) => s + bestFor(c.id), 0)
@@ -58,6 +72,17 @@ export default function Home({ onSelect }) {
             )
           })}
         </div>
+
+        {totalBest > 0 && (
+          <div className="mt-10 text-center">
+            <button
+              onClick={resetAll}
+              className="text-sm text-white/50 underline-offset-4 transition-colors hover:text-white/80 hover:underline"
+            >
+              Vymazat pokrok
+            </button>
+          </div>
+        )}
       </div>
     </div>
   )
