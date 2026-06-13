@@ -3,6 +3,8 @@ export default function ResultCard({ score, total, best = 0, onRetry }) {
   const perfect = total > 0 && score === total
   const isRecord = score > best && score > 0
   const displayBest = Math.max(best, score)
+  const wrong = Math.max(total - score, 0)
+  const percent = Math.round(ratio * 100)
 
   let message = 'Zkus to znovu a zlepši se!'
   if (perfect) message = 'Perfektní! Všechno správně 🤩'
@@ -19,6 +21,9 @@ export default function ResultCard({ score, total, best = 0, onRetry }) {
 
         <p className="text-2xl mb-2">
           Získal jsi <span className="font-bold">{score}/{total}</span> ⭐
+        </p>
+        <p className="text-base text-white/90 mb-2">
+          ✅ {score} správně · ❌ {wrong} špatně · {percent} %
         </p>
         <p className="text-lg text-white/85 mb-3">{message}</p>
         <p className="text-sm text-white/70 mb-10">
