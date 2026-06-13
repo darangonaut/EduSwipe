@@ -9,6 +9,8 @@ const bestFor = (id) => {
   }
 }
 
+const quizCount = (course) => course.lessons.filter((c) => c.type === 'quiz').length
+
 export default function Home({ onSelect }) {
   // Domovska obrazovka ma tmavy theme-color
   useEffect(() => {
@@ -16,11 +18,18 @@ export default function Home({ onSelect }) {
     if (meta) meta.setAttribute('content', '#171717')
   }, [])
 
+  const totalQuizzes = courses.reduce((s, c) => s + quizCount(c), 0)
+  const totalBest = courses.reduce((s, c) => s + bestFor(c.id), 0)
+  const perfectCount = courses.filter((c) => quizCount(c) > 0 && bestFor(c.id) >= quizCount(c)).length
+
   return (
     <div className="h-screen w-screen overflow-y-auto bg-neutral-900 px-6 py-12 text-white">
       <div className="mx-auto max-w-md">
         <h1 className="mb-2 text-center text-4xl font-extrabold tracking-tight">EduSwipe</h1>
-        <p className="mb-10 text-center text-white/70">Vyber si kurz a uč se swipováním 👆</p>
+        <p className="mb-4 text-center text-white/70">Vyber si kurz a uč se swipováním 👆</p>
+        <p className="mb-10 text-center text-sm text-white/60">
+          ⭐ {totalBest}/{totalQuizzes} · 🏆 {perfectCount}/{courses.length} kurzů
+        </p>
 
         <div className="space-y-4">
           {courses.map((course) => {
