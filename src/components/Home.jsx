@@ -49,7 +49,11 @@ export default function Home({ onSelect }) {
                     {course.lessons.length} karet · {quizzes} kvízů
                   </span>
                 </span>
-                {best > 0 && <span className="text-sm font-semibold">⭐ {best}/{quizzes}</span>}
+                {quizzes > 0 && best >= quizzes ? (
+                  <span className="text-2xl" title="Perfektní">🏆</span>
+                ) : best > 0 ? (
+                  <span className="text-sm font-semibold">⭐ {best}/{quizzes}</span>
+                ) : null}
               </button>
             )
           })}
