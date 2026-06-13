@@ -53,9 +53,12 @@ export default function QuizCard({ question, options, answer, explanation, emoji
               key={index}
               onClick={() => handleSelect(index)}
               disabled={selected !== null}
-              className={`w-full py-5 px-6 rounded-2xl text-xl font-semibold transition-all duration-200 ${getButtonStyle(index)}`}
+              className={`flex w-full items-center gap-3 py-4 px-5 rounded-2xl text-xl font-semibold transition-all duration-200 ${getButtonStyle(index)}`}
             >
-              {option}
+              <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-black/20 text-base font-bold">
+                {String.fromCharCode(65 + index)}
+              </span>
+              <span className="flex-1 text-center">{option}</span>
             </button>
           ))}
         </div>
