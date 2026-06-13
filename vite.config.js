@@ -13,7 +13,12 @@ export default defineConfig({
       manifest: {
         name: 'EduSwipe',
         short_name: 'EduSwipe',
-        description: 'Vzdelavacia aplikacia pre deti',
+        description: 'Vzdělávací aplikace pro děti – uč se hravě po kartách.',
+        lang: 'cs',
+        id: '/',
+        start_url: '/',
+        scope: '/',
+        categories: ['education', 'kids'],
         theme_color: '#000000',
         background_color: '#000000',
         display: 'standalone',
