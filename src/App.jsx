@@ -83,8 +83,15 @@ function App() {
   const locked = currentCard?.type === 'quiz' && !(currentCard.id in answered)
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-black">
+    <div className="relative h-screen w-screen overflow-hidden bg-black">
       <ProgressBar current={currentIndex} total={lessons.length + 1} score={score} />
+
+      {currentIndex === 0 && (
+        <div className="pointer-events-none absolute bottom-8 left-0 right-0 z-20 flex flex-col items-center text-white/90 animate-bounce">
+          <span className="text-3xl leading-none">⌃</span>
+          <span className="text-sm font-medium">Posuň nahoru</span>
+        </div>
+      )}
 
       <Swiper
         key={attempt}
