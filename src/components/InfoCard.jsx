@@ -1,4 +1,14 @@
+const canSpeak = typeof window !== 'undefined' && 'speechSynthesis' in window
+
 export default function InfoCard({ title, content, image, emoji, topic, color }) {
+  const speak = () => {
+    if (!canSpeak) return
+    window.speechSynthesis.cancel()
+    const u = new SpeechSynthesisUtterance(`${title}. ${content}`)
+    u.lang = 'cs-CZ'
+    window.speechSynthesis.speak(u)
+  }
+
   return (
     <div
       className="relative h-full w-full flex flex-col items-center justify-center px-6 py-10 text-white text-center overflow-hidden"
@@ -28,6 +38,15 @@ export default function InfoCard({ title, content, image, emoji, topic, color })
 
         <h2 className="text-4xl font-extrabold mb-5 tracking-tight drop-shadow-sm">{title}</h2>
         <p className="text-xl sm:text-2xl leading-relaxed text-white/95">{content}</p>
+
+        {canSpeak && (
+          <button
+            onClick={speak}
+            className="mt-8 px-5 py-2 rounded-full bg-white/20 text-base font-medium transition-all hover:bg-white/30 active:scale-95"
+          >
+            🔊 Přečíst
+          </button>
+        )}
       </div>
     </div>
   )
