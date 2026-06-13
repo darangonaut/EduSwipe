@@ -4,6 +4,7 @@ Vzdělávací PWA pro děti, která využívá návykový formát **vertikální
 
 ## ✨ Funkce
 
+- **Více kurzů** – domovská obrazovka s výběrem kurzu, samostatný feed pro každý
 - **Vertikální swipe feed** mezi kartami (dotyk, kolečko myši, klávesy ↑/↓)
 - **Dva typy karet** – fakt (text + emoji) a kvíz (A/B/C volba s okamžitou zpětnou vazbou a vysvětlením)
 - **Zámek postupu** – na nezodpovězeném kvízu se nedá pokračovat dál
@@ -33,9 +34,21 @@ npm run lint     # ESLint
 | Offline | vite-plugin-pwa (Workbox) |
 | Data | statický `src/data/lessons.json` |
 
-## 📇 Formát lekcí (`src/data/lessons.json`)
+## 📇 Formát dat (`src/data/courses.json`)
 
-Pole objektů; každý objekt je jedna karta ve feedu.
+Pole **kurzů**; každý kurz má metadata a pole karet (`lessons`).
+
+```json
+{
+  "id": "vesmir",
+  "title": "Vesmír",
+  "emoji": "🪐",
+  "color": "#5352ed",
+  "lessons": [ /* karty níže */ ]
+}
+```
+
+Každá karta v `lessons` je fakt nebo kvíz:
 
 **Fakt:**
 
@@ -80,7 +93,9 @@ Pole objektů; každý objekt je jedna karta ve feedu.
 
 ## 🧩 Komponenty
 
-- `App.jsx` – Swiper, stav skóre/pokroku, zámek, perzistence
+- `App.jsx` – přepíná mezi domovskou obrazovkou a kurzem
+- `Home.jsx` – výběr kurzu (s nejlepším skóre u každého)
+- `Course.jsx` – feed jednoho kurzu: Swiper, skóre/pokrok, zámek, perzistence (per kurz)
 - `CardRenderer.jsx` – rozhodne mezi `InfoCard` a `QuizCard`
 - `InfoCard.jsx` – textová/obrázková karta
 - `QuizCard.jsx` – interaktivní kvíz se zpětnou vazbou

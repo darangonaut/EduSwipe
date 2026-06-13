@@ -1,4 +1,4 @@
-export default function ResultCard({ score, total, best = 0, onRetry }) {
+export default function ResultCard({ score, total, best = 0, onRetry, onExit }) {
   const ratio = total > 0 ? score / total : 0
   const perfect = total > 0 && score === total
   const isRecord = score > best && score > 0
@@ -50,6 +50,15 @@ export default function ResultCard({ score, total, best = 0, onRetry }) {
         >
           Zkusit znovu
         </button>
+
+        {onExit && (
+          <button
+            onClick={onExit}
+            className="mt-4 text-white/80 text-base font-medium underline-offset-4 hover:underline"
+          >
+            ‹ Zpět na kurzy
+          </button>
+        )}
       </div>
     </div>
   )
