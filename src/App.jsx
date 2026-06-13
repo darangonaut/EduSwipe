@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Mousewheel } from 'swiper/modules'
+import { Mousewheel, Keyboard } from 'swiper/modules'
 import 'swiper/css'
 
 import CardRenderer from './components/CardRenderer'
@@ -91,8 +91,9 @@ function App() {
         direction="vertical"
         slidesPerView={1}
         mousewheel={true}
+        keyboard={{ enabled: true }}
         allowSlideNext={!locked}
-        modules={[Mousewheel]}
+        modules={[Mousewheel, Keyboard]}
         onSlideChange={handleSlideChange}
         className="h-full w-full"
       >
