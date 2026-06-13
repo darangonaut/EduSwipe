@@ -1,124 +1,96 @@
-# EduSwipe MVP
+# EduSwipe
 
-## 1. Vizia produktu
+Vzdělávací PWA pro děti, která využívá návykový formát **vertikálního swipování** (jako TikTok) na konzumaci učební látky rozdělené do mikro-karet. Mix faktů a krátkých kvízů, čeština, funguje offline.
 
-Vytvorit vzdelavaciu aplikaciu pre deti, ktora vyuziva navykovy format **vertikalneho swipovania** (znamy z TikToku) na konzumaciu ucebnej latky rozdelenej do mikro-davok.
+## ✨ Funkce
 
----
+- **Vertikální swipe feed** mezi kartami (dotyk, kolečko myši, klávesy ↑/↓)
+- **Dva typy karet** – fakt (text + emoji) a kvíz (A/B/C volba s okamžitou zpětnou vazbou a vysvětlením)
+- **Zámek postupu** – na nezodpovězeném kvízu se nedá pokračovat dál
+- **Skóre a rekord** – počítání správných odpovědí + nejlepší výsledek (uložený v `localStorage`)
+- **Uložený pokrok** – odpovědi přežijí reload; tlačítko *Zkusit znovu* je vymaže
+- **Závěrečná karta** s výsledkem a restartem
+- **PWA** – instalovatelná na plochu, offline přes service worker
+- **Přístupnost** – ovládání klávesnicí, respekt k `prefers-reduced-motion`
 
-## 2. Technicke poziadavky
-
-| Komponent | Technologia |
-| --- | --- |
-| **Framework** | React (Vite) |
-| **Styling** | Tailwind CSS |
-| **Animacie/Swipe** | Swiper.js (Effect Creative/Slide) |
-| **Offline podpora** | Vite PWA Plugin |
-| **Data** | Staticky JSON subor |
-
----
-
-## 3. Struktura dat (`src/data/lessons.json`)
-
-Kazdy objekt v poli reprezentuje jednu "kartu" vo feede.
-
-```json
-[
-  {
-    "id": "c1",
-    "type": "fact",
-    "title": "Vesmir",
-    "content": "Slnko tvori 99.8% hmotnosti celej nasej slnecnej sustavy.",
-    "color": "#ff4757"
-  },
-  {
-    "id": "c2",
-    "type": "quiz",
-    "question": "Je Pluto momentalne povazovane za planetu?",
-    "options": ["Ano", "Nie"],
-    "answer": 1,
-    "explanation": "Pluto bolo v roku 2006 preradene medzi trpaslicie planety."
-  }
-]
-```
-
----
-
-## 4. Architektura aplikacie
-
-### Hlavne komponenty
-
-1. **`App.jsx`**: Hlavny kontajner, inicializacia Swiper.js.
-2. **`CardRenderer.jsx`**: Logika, ktora rozhodne, ci zobrazit textovu kartu alebo kviz.
-3. **`InfoCard.jsx`**: UI pre text a obrazky.
-4. **`QuizCard.jsx`**: UI pre interaktivne otazky so spatnou vazbou.
-5. **`ProgressBar.jsx`**: Indikator postupu navrchu obrazovky.
-
-### PWA Konfiguracia (`vite.config.js`)
-
-Aplikacia musi obsahovat:
-
-* `manifest.json` s ikonami.
-* `service-worker` pre cachovanie JSON dat a assetov.
-* Nastavenie `display: standalone` pre pocit nativnej aplikacie.
-
----
-
-## 5. Implementacny plan (Krok za krokom)
-
-### Krok 1: Inicializacia projektu
-
-```bash
-npm create vite@latest eduswipe -- --template react
-cd eduswipe
-npm install swiper tailwindcss postcss autoprefixer vite-plugin-pwa
-npx tailwindcss init -p
-```
-
-### Krok 2: Konfiguracia Swiperu (Vertikalny mod)
-
-V hlavnom komponente nastavit Swiper tak, aby simuloval TikTok:
-
-* `direction={'vertical'}`
-* `slidesPerView={1}`
-* `mousewheel={true}`
-
-### Krok 3: Logika kvizu
-
-* Pri kliknuti na moznost porovnat `index` s `answer` v JSON.
-* Zmenit farbu tlacidla (zelena/cervena).
-* Povolit swipe na dalsiu kartu az po zodpovedani (volitelne).
-
----
-
-## 6. MVP Funkcie (Must-Have)
-
-- [ ] Vertikalne swipovanie medzi kartami.
-- [ ] Zobrazenie textu a obrazka z JSON.
-- [ ] Jednoduchy kviz (A/B volba).
-- [ ] Moznost "Instalovat na plochu" (PWA).
-- [ ] Responzivita (primarne pre mobilne zariadenia 16:9 a 19.5:9).
-
----
-
-## 7. Buduce rozsirenia (Post-MVP)
-
-* **Audio:** Automaticke predcitavanie textu (Text-to-Speech).
-* **Video:** Podpora pre kratke `.mp4` slucky na pozadi kariet.
-* **Gamifikacia:** Zbieranie bodov za spravne odpovede v kvizoch.
-* **Admin rozhranie:** Jednoduchy formular na generovanie novych JSON lekcii.
-
----
-
-## Development
+## 🚀 Spuštění
 
 ```bash
 npm install
-npm run dev
+npm run dev      # vývojový server (Vite)
+npm run build    # produkční build do dist/
+npm run preview  # náhled buildu
+npm run lint     # ESLint
 ```
 
-## Build
+## 🧱 Tech stack
 
-```bash
-npm run build
+| Vrstva | Technologie |
+| --- | --- |
+| Framework | React 19 + Vite 7 |
+| Styling | Tailwind CSS v4 |
+| Swipe | Swiper.js (Mousewheel + Keyboard) |
+| Offline | vite-plugin-pwa (Workbox) |
+| Data | statický `src/data/lessons.json` |
+
+## 📇 Formát lekcí (`src/data/lessons.json`)
+
+Pole objektů; každý objekt je jedna karta ve feedu.
+
+**Fakt:**
+
+```json
+{
+  "id": "c1",
+  "type": "fact",
+  "topic": "Vesmír",
+  "title": "Vesmír",
+  "content": "Slunce tvoří 99,8 % hmotnosti sluneční soustavy.",
+  "emoji": "☀️",
+  "color": "#ff4757"
+}
 ```
+
+**Kvíz:**
+
+```json
+{
+  "id": "c2",
+  "type": "quiz",
+  "topic": "Vesmír",
+  "question": "Je Pluto považováno za planetu?",
+  "options": ["Ano", "Ne"],
+  "answer": 1,
+  "explanation": "Pluto bylo v roce 2006 přeřazeno mezi trpasličí planety.",
+  "emoji": "🪐",
+  "color": "#5352ed"
+}
+```
+
+| Pole | Typ | Platí pro | Popis |
+| --- | --- | --- | --- |
+| `id` | string | obě | Unikátní klíč karty |
+| `type` | `"fact"` \| `"quiz"` | obě | Typ karty |
+| `topic` | string | obě | Štítek kategorie (Vesmír, Tělo, Příroda, …) |
+| `emoji` | string | obě | Vizuální kotva karty |
+| `color` | string (hex) | obě | Barva pozadí karty |
+| `title`, `content` | string | fact | Nadpis a text |
+| `image` | string (URL) | fact | Volitelný obrázek místo emoji |
+| `question`, `options`, `answer`, `explanation` | – | quiz | Otázka, volby, index správné odpovědi, vysvětlení |
+
+## 🧩 Komponenty
+
+- `App.jsx` – Swiper, stav skóre/pokroku, zámek, perzistence
+- `CardRenderer.jsx` – rozhodne mezi `InfoCard` a `QuizCard`
+- `InfoCard.jsx` – textová/obrázková karta
+- `QuizCard.jsx` – interaktivní kvíz se zpětnou vazbou
+- `ProgressBar.jsx` – indikátor postupu + skóre
+- `ResultCard.jsx` – závěrečné shrnutí a restart
+
+## 🔮 Možná rozšíření
+
+Text-to-speech předčítání, video pozadí, kategorie/filtry, admin formulář na tvorbu lekcí, gamifikace (odznaky, série).
+
+## 📄 Licence
+
+MIT
