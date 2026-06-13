@@ -1,4 +1,4 @@
-export default function InfoCard({ title, content, image, emoji, color }) {
+export default function InfoCard({ title, content, image, emoji, topic, color }) {
   return (
     <div
       className="relative h-full w-full flex flex-col items-center justify-center px-6 py-10 text-white text-center overflow-hidden"
@@ -8,6 +8,11 @@ export default function InfoCard({ title, content, image, emoji, color }) {
       <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-transparent to-black/30" />
 
       <div className="relative z-10 flex flex-col items-center max-w-md">
+        {topic && (
+          <span className="mb-6 px-3 py-1 rounded-full bg-white/20 text-xs font-semibold uppercase tracking-wide">
+            {topic}
+          </span>
+        )}
         {image ? (
           <img
             src={image}

@@ -2,6 +2,7 @@
   {
     "id": "c1",
     "type": "fact",
+    "topic": "Vesmír",
     "title": "Vesmír",
     "content": "Slunce tvoří 99,8 % hmotnosti celé naší sluneční soustavy.",
     "emoji": "☀️",
@@ -10,6 +11,7 @@
   {
     "id": "c2",
     "type": "quiz",
+    "topic": "Vesmír",
     "question": "Je Pluto v současnosti považováno za planetu?",
     "options": ["Ano", "Ne"],
     "answer": 1,
@@ -20,6 +22,7 @@
   {
     "id": "c3",
     "type": "fact",
+    "topic": "Tělo",
     "title": "Lidské tělo",
     "content": "Lidské tělo obsahuje přibližně 206 kostí. Při narození jich máme víc – až 270!",
     "emoji": "🦴",
@@ -28,6 +31,7 @@
   {
     "id": "c4",
     "type": "quiz",
+    "topic": "Příroda",
     "question": "Kolik procent Země pokrývá voda?",
     "options": ["50 %", "71 %", "85 %"],
     "answer": 1,
@@ -38,6 +42,7 @@
   {
     "id": "c5",
     "type": "fact",
+    "topic": "Pravěk",
     "title": "Dinosauři",
     "content": "Dinosauři žili na Zemi přibližně 165 milionů let – lidé existují jen 200 000 let.",
     "emoji": "🦕",
@@ -46,6 +51,7 @@
   {
     "id": "c6",
     "type": "quiz",
+    "topic": "Zvířata",
     "question": "Které zvíře je nejrychlejší na světě?",
     "options": ["Lev", "Gepard", "Orel"],
     "answer": 1,
@@ -56,6 +62,7 @@
   {
     "id": "c7",
     "type": "fact",
+    "topic": "Zvířata",
     "title": "Mravenci",
     "content": "Mravenec unese až padesátkrát větší váhu, než sám váží.",
     "emoji": "🐜",
@@ -64,6 +71,7 @@
   {
     "id": "c8",
     "type": "quiz",
+    "topic": "Zvířata",
     "question": "Kolik nohou má pavouk?",
     "options": ["6", "8", "10"],
     "answer": 1,
@@ -74,6 +82,7 @@
   {
     "id": "c9",
     "type": "fact",
+    "topic": "Příroda",
     "title": "Med",
     "content": "Med se nikdy nezkazí – archeologové našli jedlý med starý přes 3000 let.",
     "emoji": "🍯",
@@ -82,6 +91,7 @@
   {
     "id": "c10",
     "type": "quiz",
+    "topic": "Vesmír",
     "question": "Která planeta je největší ve sluneční soustavě?",
     "options": ["Země", "Jupiter", "Saturn"],
     "answer": 1,
@@ -92,6 +102,7 @@
   {
     "id": "c11",
     "type": "fact",
+    "topic": "Příroda",
     "title": "Blesk",
     "content": "Blesk je až pětkrát teplejší než povrch Slunce.",
     "emoji": "⚡",
@@ -100,6 +111,7 @@
   {
     "id": "c12",
     "type": "quiz",
+    "topic": "Zvířata",
     "question": "Kolik srdcí má chobotnice?",
     "options": ["1", "2", "3"],
     "answer": 2,

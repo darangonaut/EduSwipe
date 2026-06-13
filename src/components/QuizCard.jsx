@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function QuizCard({ question, options, answer, explanation, emoji, color, initialSelected = null, onAnswer }) {
+export default function QuizCard({ question, options, answer, explanation, emoji, topic, color, initialSelected = null, onAnswer }) {
   const [selected, setSelected] = useState(initialSelected)
 
   const handleSelect = (index) => {
@@ -38,6 +38,11 @@ export default function QuizCard({ question, options, answer, explanation, emoji
       <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-transparent to-black/30" />
 
       <div className="relative z-10 flex flex-col items-center w-full max-w-md">
+        {topic && (
+          <span className="mb-5 px-3 py-1 rounded-full bg-white/20 text-xs font-semibold uppercase tracking-wide">
+            {topic}
+          </span>
+        )}
         {emoji && <div className="text-6xl mb-6 drop-shadow-md">{emoji}</div>}
 
         <h2 className="text-3xl font-extrabold mb-8 tracking-tight drop-shadow-sm">{question}</h2>
