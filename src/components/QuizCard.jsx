@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 export default function QuizCard({ question, options, answer, explanation, emoji, topic, color, initialSelected = null, onAnswer }) {
   const [selected, setSelected] = useState(initialSelected)
+  const rootRef = useRef(null)
 
-  const handleSelect = (index) => {
+  const handleSelect = useCallback((index) => {
     if (selected !== null) return
     const correct = index === answer
     setSelected(index)
@@ -14,7 +15,20 @@ export default function QuizCard({ question, options, answer, explanation, emoji
     if (onAnswer) {
       onAnswer(index, correct)
     }
-  }
+  }, [selected, answer, onAnswer])
+
+  // Odpovidani klavesami 1..N, jen na aktivni karte
+  useEffect(() => {
+    const onKey = (e) => {
+      if (selected !== null) return
+      const slide = rootRef.current?.closest('.swiper-slide')
+      if (!slide || !slide.classList.contains('swiper-slide-active')) return
+      const n = Number(e.key)
+      if (n >= 1 && n <= options.length) handleSelect(n - 1)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [selected, options.length, handleSelect])
 
   const getButtonStyle = (index) => {
     if (selected === null) {
@@ -31,6 +45,7 @@ export default function QuizCard({ question, options, answer, explanation, emoji
 
   return (
     <div
+      ref={rootRef}
       className="relative h-full w-full flex flex-col items-center justify-center px-6 py-10 text-white text-center overflow-hidden"
       style={{ backgroundColor: color }}
     >
