@@ -28,11 +28,22 @@ const loadBest = () => {
   }
 }
 
+// Fisher–Yates zamíchání (nemutuje vstup)
+const shuffle = (arr) => {
+  const a = [...arr]
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[a[i], a[j]] = [a[j], a[i]]
+  }
+  return a
+}
+
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answered, setAnswered] = useState(loadAnswered)
   const [storedBest, setStoredBest] = useState(loadBest)
   const [attempt, setAttempt] = useState(0)
+  const [deck, setDeck] = useState(lessons)
 
   // Perzistence pokroku do localStorage
   useEffect(() => {
@@ -61,6 +72,7 @@ function App() {
       /* storage nedostupny */
     }
     setStoredBest(loadBest()) // nacitat pripadny novy rekord z tohto behu
+    setDeck(shuffle(lessons)) // zamichat poradi pro novy pokus
     setCurrentIndex(0)
     setAttempt((a) => a + 1)
   }
@@ -79,7 +91,7 @@ function App() {
   }, [score, storedBest])
 
   // Zamknut posun dopredu na nezodpovedanom kvizu
-  const currentCard = lessons[currentIndex]
+  const currentCard = deck[currentIndex]
   const locked = currentCard?.type === 'quiz' && !(currentCard.id in answered)
 
   if (lessons.length === 0) {
@@ -112,7 +124,7 @@ function App() {
         onSlideChange={handleSlideChange}
         className="h-full w-full"
       >
-        {lessons.map((card) => (
+        {deck.map((card) => (
           <SwiperSlide key={card.id}>
             <CardRenderer card={card} answered={answered[card.id]} onAnswer={handleAnswer} />
           </SwiperSlide>
