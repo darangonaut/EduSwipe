@@ -56,6 +56,10 @@ function App() {
 
   const handleSlideChange = (swiper) => {
     setCurrentIndex(swiper.activeIndex)
+    // Prefarbit UI prohlizece podle aktualni karty (vysledek = fialova)
+    const card = deck[swiper.activeIndex]
+    const meta = document.querySelector('meta[name="theme-color"]')
+    if (meta) meta.setAttribute('content', card?.color || '#7c3aed')
   }
 
   // Zaznamenat odpoved jen jednou na kartu (idempotentni)
