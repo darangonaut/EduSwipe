@@ -82,6 +82,14 @@ function App() {
   const currentCard = lessons[currentIndex]
   const locked = currentCard?.type === 'quiz' && !(currentCard.id in answered)
 
+  if (lessons.length === 0) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center bg-black p-8 text-center text-xl text-white">
+        Zatím tu nejsou žádné lekce. 📭
+      </div>
+    )
+  }
+
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-black">
       <ProgressBar current={currentIndex} total={lessons.length + 1} score={score} />
