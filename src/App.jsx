@@ -10,6 +10,7 @@ import lessons from './data/lessons.json'
 
 const totalQuizzes = lessons.filter((c) => c.type === 'quiz').length
 const STORAGE_KEY = 'eduswipe-progress'
+const BEST_KEY = 'eduswipe-best'
 
 const loadAnswered = () => {
   try {
@@ -19,9 +20,18 @@ const loadAnswered = () => {
   }
 }
 
+const loadBest = () => {
+  try {
+    return Number(localStorage.getItem(BEST_KEY)) || 0
+  } catch {
+    return 0
+  }
+}
+
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answered, setAnswered] = useState(loadAnswered)
+  const [best, setBest] = useState(loadBest)
   const [attempt, setAttempt] = useState(0)
 
   // Perzistence pokroku do localStorage
@@ -56,6 +66,18 @@ function App() {
 
   const score = Object.values(answered).filter((a) => a.correct).length
 
+  // Sledovat najlepsi vysledok
+  useEffect(() => {
+    if (score > best) {
+      setBest(score)
+      try {
+        localStorage.setItem(BEST_KEY, String(score))
+      } catch {
+        /* storage nedostupny */
+      }
+    }
+  }, [score, best])
+
   // Zamknut posun dopredu na nezodpovedanom kvizu
   const currentCard = lessons[currentIndex]
   const locked = currentCard?.type === 'quiz' && !(currentCard.id in answered)
@@ -81,7 +103,7 @@ function App() {
         ))}
 
         <SwiperSlide key="result">
-          <ResultCard score={score} total={totalQuizzes} onRetry={handleRetry} />
+          <ResultCard score={score} total={totalQuizzes} best={best} onRetry={handleRetry} />
         </SwiperSlide>
       </Swiper>
     </div>

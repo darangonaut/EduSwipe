@@ -1,6 +1,7 @@
-export default function ResultCard({ score, total, onRetry }) {
+export default function ResultCard({ score, total, best = 0, onRetry }) {
   const ratio = total > 0 ? score / total : 0
   const perfect = total > 0 && score === total
+  const isRecord = score >= best && score > 0
 
   let message = 'Zkus to znovu a zlepši se!'
   if (perfect) message = 'Perfektní! Všechno správně 🤩'
@@ -18,7 +19,10 @@ export default function ResultCard({ score, total, onRetry }) {
         <p className="text-2xl mb-2">
           Získal jsi <span className="font-bold">{score}/{total}</span> ⭐
         </p>
-        <p className="text-lg text-white/85 mb-10">{message}</p>
+        <p className="text-lg text-white/85 mb-3">{message}</p>
+        <p className="text-sm text-white/70 mb-10">
+          {isRecord ? '🥇 Nový rekord!' : `Nejlepší výsledek: ${best}/${total} ⭐`}
+        </p>
 
         <button
           onClick={onRetry}
