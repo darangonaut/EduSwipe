@@ -2,54 +2,54 @@
   {
     "id": "c1",
     "type": "fact",
-    "title": "Vesmir",
-    "content": "Slnko tvori 99.8% hmotnosti celej nasej slnecnej sustavy.",
+    "title": "Vesmír",
+    "content": "Slunce tvoří 99,8 % hmotnosti celé naší sluneční soustavy.",
     "emoji": "☀️",
     "color": "#ff4757"
   },
   {
     "id": "c2",
     "type": "quiz",
-    "question": "Je Pluto momentalne povazovane za planetu?",
-    "options": ["Ano", "Nie"],
+    "question": "Je Pluto v současnosti považováno za planetu?",
+    "options": ["Ano", "Ne"],
     "answer": 1,
-    "explanation": "Pluto bolo v roku 2006 preradene medzi trpaslicie planety.",
+    "explanation": "Pluto bylo v roce 2006 přeřazeno mezi trpasličí planety.",
     "emoji": "🪐",
     "color": "#5352ed"
   },
   {
     "id": "c3",
     "type": "fact",
-    "title": "Ludske telo",
-    "content": "Ludske telo obsahuje priblizne 206 kosti. Pri narodeni ich mame viac - az 270!",
+    "title": "Lidské tělo",
+    "content": "Lidské tělo obsahuje přibližně 206 kostí. Při narození jich máme víc – až 270!",
     "emoji": "🦴",
     "color": "#2ed573"
   },
   {
     "id": "c4",
     "type": "quiz",
-    "question": "Kolko percent Zeme pokryva voda?",
-    "options": ["50%", "71%", "85%"],
+    "question": "Kolik procent Země pokrývá voda?",
+    "options": ["50 %", "71 %", "85 %"],
     "answer": 1,
-    "explanation": "Priblizne 71% povrchu Zeme je pokrytych vodou.",
+    "explanation": "Přibližně 71 % povrchu Země je pokryto vodou.",
     "emoji": "🌊",
     "color": "#1e90ff"
   },
   {
     "id": "c5",
     "type": "fact",
-    "title": "Dinosaury",
-    "content": "Dinosaury zili na Zemi priblizne 165 milionov rokov - ludia existuju iba 200 000 rokov.",
+    "title": "Dinosauři",
+    "content": "Dinosauři žili na Zemi přibližně 165 milionů let – lidé existují jen 200 000 let.",
     "emoji": "🦕",
     "color": "#ff6b81"
   },
   {
     "id": "c6",
     "type": "quiz",
-    "question": "Ktore zviera je najrychlejsie na svete?",
-    "options": ["Lev", "Gepard", "Orol"],
+    "question": "Které zvíře je nejrychlejší na světě?",
+    "options": ["Lev", "Gepard", "Orel"],
     "answer": 1,
-    "explanation": "Gepard moze bezat rychlostou az 120 km/h!",
+    "explanation": "Gepard dokáže běžet rychlostí až 120 km/h!",
     "emoji": "🐆",
     "color": "#ffa502"
   }
