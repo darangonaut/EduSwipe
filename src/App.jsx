@@ -31,7 +31,7 @@ const loadBest = () => {
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answered, setAnswered] = useState(loadAnswered)
-  const [best, setBest] = useState(loadBest)
+  const [storedBest, setStoredBest] = useState(loadBest)
   const [attempt, setAttempt] = useState(0)
 
   // Perzistence pokroku do localStorage
@@ -60,23 +60,23 @@ function App() {
     } catch {
       /* storage nedostupny */
     }
+    setStoredBest(loadBest()) // nacitat pripadny novy rekord z tohto behu
     setCurrentIndex(0)
     setAttempt((a) => a + 1)
   }
 
   const score = Object.values(answered).filter((a) => a.correct).length
 
-  // Sledovat najlepsi vysledok
+  // Zapsat novy rekord do storage (bez setState v effectu)
   useEffect(() => {
-    if (score > best) {
-      setBest(score)
+    if (score > storedBest) {
       try {
         localStorage.setItem(BEST_KEY, String(score))
       } catch {
         /* storage nedostupny */
       }
     }
-  }, [score, best])
+  }, [score, storedBest])
 
   // Zamknut posun dopredu na nezodpovedanom kvizu
   const currentCard = lessons[currentIndex]
@@ -103,7 +103,7 @@ function App() {
         ))}
 
         <SwiperSlide key="result">
-          <ResultCard score={score} total={totalQuizzes} best={best} onRetry={handleRetry} />
+          <ResultCard score={score} total={totalQuizzes} best={storedBest} onRetry={handleRetry} />
         </SwiperSlide>
       </Swiper>
     </div>
