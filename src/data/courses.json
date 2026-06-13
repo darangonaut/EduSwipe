@@ -142,5 +142,66 @@
         "color": "#6c5ce7"
       }
     ]
+  },
+  {
+    "id": "matematika",
+    "title": "Matematika",
+    "emoji": "🔢",
+    "color": "#8e44ad",
+    "lessons": [
+      {
+        "id": "m1",
+        "type": "quiz",
+        "topic": "Matematika",
+        "question": "Kolik je 7 + 8?",
+        "options": ["13", "15", "17"],
+        "answer": 1,
+        "explanation": "7 + 8 = 15.",
+        "emoji": "➕",
+        "color": "#0984e3"
+      },
+      {
+        "id": "m2",
+        "type": "quiz",
+        "topic": "Matematika",
+        "question": "Kolik je 6 × 7?",
+        "options": ["42", "36", "48"],
+        "answer": 0,
+        "explanation": "6 × 7 = 42.",
+        "emoji": "✖️",
+        "color": "#e84393"
+      },
+      {
+        "id": "m3",
+        "type": "fact",
+        "topic": "Matematika",
+        "title": "Nula",
+        "content": "Číslo nula vymysleli v Indii – bez něj by neexistovaly počítače!",
+        "emoji": "0️⃣",
+        "color": "#636e72"
+      },
+      {
+        "id": "m4",
+        "type": "quiz",
+        "topic": "Matematika",
+        "question": "Kolik stran má trojúhelník?",
+        "options": ["3", "4", "5"],
+        "answer": 0,
+        "explanation": "Trojúhelník má 3 strany a 3 vrcholy.",
+        "emoji": "🔺",
+        "color": "#d63031"
+      },
+      {
+        "id": "m5",
+        "type": "quiz",
+        "topic": "Matematika",
+        "question": "Kolik je polovina ze 100?",
+        "options": ["25", "50", "75"],
+        "answer": 1,
+        "explanation": "Polovina ze 100 je 50.",
+        "emoji": "➗",
+        "color": "#00b894"
+      }
+    ]
   }
 ]
