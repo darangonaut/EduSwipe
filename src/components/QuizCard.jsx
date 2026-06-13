@@ -5,9 +5,14 @@ export default function QuizCard({ question, options, answer, explanation, emoji
 
   const handleSelect = (index) => {
     if (selected !== null) return
+    const correct = index === answer
     setSelected(index)
+    // Hapticka odozva (jen kde je podporovana)
+    if (typeof navigator !== 'undefined' && navigator.vibrate) {
+      navigator.vibrate(correct ? 30 : [40, 30, 40])
+    }
     if (onAnswer) {
-      onAnswer(index, index === answer)
+      onAnswer(index, correct)
     }
   }
 
