@@ -1,13 +1,11 @@
 import { useState } from 'react'
 
-export default function QuizCard({ question, options, answer, explanation, color, onAnswer }) {
+export default function QuizCard({ question, options, answer, explanation, emoji, color, onAnswer }) {
   const [selected, setSelected] = useState(null)
-  const [showExplanation, setShowExplanation] = useState(false)
 
   const handleSelect = (index) => {
     if (selected !== null) return
     setSelected(index)
-    setShowExplanation(true)
     if (onAnswer) {
       onAnswer(index === answer)
     }
@@ -15,41 +13,51 @@ export default function QuizCard({ question, options, answer, explanation, color
 
   const getButtonStyle = (index) => {
     if (selected === null) {
-      return 'bg-white/20 hover:bg-white/30'
+      return 'bg-white/20 hover:bg-white/30 hover:scale-[1.02] active:scale-95'
     }
     if (index === answer) {
-      return 'bg-green-500'
+      return 'bg-green-500 shadow-lg scale-[1.02]'
     }
     if (index === selected && index !== answer) {
       return 'bg-red-500'
     }
-    return 'bg-white/20 opacity-50'
+    return 'bg-white/20 opacity-40'
   }
 
   return (
     <div
-      className="h-full w-full flex flex-col items-center justify-center p-8 text-white"
+      className="relative h-full w-full flex flex-col items-center justify-center px-6 py-10 text-white text-center overflow-hidden"
       style={{ backgroundColor: color }}
     >
-      <h2 className="text-2xl font-bold mb-8 text-center">{question}</h2>
+      {/* Jemny gradient pre hlbku */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-transparent to-black/30" />
 
-      <div className="w-full max-w-md space-y-4">
-        {options.map((option, index) => (
-          <button
-            key={index}
-            onClick={() => handleSelect(index)}
-            className={`w-full py-4 px-6 rounded-xl text-lg font-medium transition-all ${getButtonStyle(index)}`}
-          >
-            {option}
-          </button>
-        ))}
-      </div>
+      <div className="relative z-10 flex flex-col items-center w-full max-w-md">
+        {emoji && <div className="text-6xl mb-6 drop-shadow-md">{emoji}</div>}
 
-      {showExplanation && (
-        <div className="mt-8 p-4 bg-white/20 rounded-xl max-w-md">
-          <p className="text-center">{explanation}</p>
+        <h2 className="text-3xl font-extrabold mb-8 tracking-tight drop-shadow-sm">{question}</h2>
+
+        <div className="w-full space-y-4">
+          {options.map((option, index) => (
+            <button
+              key={index}
+              onClick={() => handleSelect(index)}
+              disabled={selected !== null}
+              className={`w-full py-5 px-6 rounded-2xl text-xl font-semibold transition-all duration-200 ${getButtonStyle(index)}`}
+            >
+              {option}
+            </button>
+          ))}
         </div>
-      )}
+
+        {selected === null ? (
+          <p className="mt-8 text-sm text-white/70">Vyber odpověď a pokračuj dál 👆</p>
+        ) : (
+          <div className="mt-8 p-5 bg-white/20 backdrop-blur-sm rounded-2xl">
+            <p className="text-lg leading-relaxed text-white/95">{explanation}</p>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

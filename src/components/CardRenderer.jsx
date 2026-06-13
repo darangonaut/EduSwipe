@@ -9,6 +9,7 @@ export default function CardRenderer({ card, onAnswer }) {
         options={card.options}
         answer={card.answer}
         explanation={card.explanation}
+        emoji={card.emoji}
         color={card.color}
         onAnswer={onAnswer ? (isCorrect) => onAnswer(card.id, isCorrect) : undefined}
       />
@@ -20,6 +21,7 @@ export default function CardRenderer({ card, onAnswer }) {
       title={card.title}
       content={card.content}
       image={card.image}
+      emoji={card.emoji}
       color={card.color}
     />
   )

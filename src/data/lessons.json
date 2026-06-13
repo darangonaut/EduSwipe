@@ -4,7 +4,7 @@
     "type": "fact",
     "title": "Vesmir",
     "content": "Slnko tvori 99.8% hmotnosti celej nasej slnecnej sustavy.",
-    "image": "https://picsum.photos/seed/vesmir/600/400",
+    "emoji": "☀️",
     "color": "#ff4757"
   },
   {
@@ -14,6 +14,7 @@
     "options": ["Ano", "Nie"],
     "answer": 1,
     "explanation": "Pluto bolo v roku 2006 preradene medzi trpaslicie planety.",
+    "emoji": "🪐",
     "color": "#5352ed"
   },
   {
@@ -21,7 +22,7 @@
     "type": "fact",
     "title": "Ludske telo",
     "content": "Ludske telo obsahuje priblizne 206 kosti. Pri narodeni ich mame viac - az 270!",
-    "image": "https://picsum.photos/seed/telo/600/400",
+    "emoji": "🦴",
     "color": "#2ed573"
   },
   {
@@ -31,6 +32,7 @@
     "options": ["50%", "71%", "85%"],
     "answer": 1,
     "explanation": "Priblizne 71% povrchu Zeme je pokrytych vodou.",
+    "emoji": "🌊",
     "color": "#1e90ff"
   },
   {
@@ -38,7 +40,7 @@
     "type": "fact",
     "title": "Dinosaury",
     "content": "Dinosaury zili na Zemi priblizne 165 milionov rokov - ludia existuju iba 200 000 rokov.",
-    "image": "https://picsum.photos/seed/dino/600/400",
+    "emoji": "🦕",
     "color": "#ff6b81"
   },
   {
@@ -48,6 +50,7 @@
     "options": ["Lev", "Gepard", "Orol"],
     "answer": 1,
     "explanation": "Gepard moze bezat rychlostou az 120 km/h!",
+    "emoji": "🐆",
     "color": "#ffa502"
   }
 ]
