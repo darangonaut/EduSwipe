@@ -52,5 +52,59 @@
     "explanation": "Gepard dokáže běžet rychlostí až 120 km/h!",
     "emoji": "🐆",
     "color": "#ffa502"
+  },
+  {
+    "id": "c7",
+    "type": "fact",
+    "title": "Mravenci",
+    "content": "Mravenec unese až padesátkrát větší váhu, než sám váží.",
+    "emoji": "🐜",
+    "color": "#e84393"
+  },
+  {
+    "id": "c8",
+    "type": "quiz",
+    "question": "Kolik nohou má pavouk?",
+    "options": ["6", "8", "10"],
+    "answer": 1,
+    "explanation": "Pavouci mají 8 nohou – proto nepatří mezi hmyz.",
+    "emoji": "🕷️",
+    "color": "#00b894"
+  },
+  {
+    "id": "c9",
+    "type": "fact",
+    "title": "Med",
+    "content": "Med se nikdy nezkazí – archeologové našli jedlý med starý přes 3000 let.",
+    "emoji": "🍯",
+    "color": "#e1772f"
+  },
+  {
+    "id": "c10",
+    "type": "quiz",
+    "question": "Která planeta je největší ve sluneční soustavě?",
+    "options": ["Země", "Jupiter", "Saturn"],
+    "answer": 1,
+    "explanation": "Jupiter je tak velký, že by se do něj vešlo přes 1300 Zemí.",
+    "emoji": "🔭",
+    "color": "#0984e3"
+  },
+  {
+    "id": "c11",
+    "type": "fact",
+    "title": "Blesk",
+    "content": "Blesk je až pětkrát teplejší než povrch Slunce.",
+    "emoji": "⚡",
+    "color": "#6c5ce7"
+  },
+  {
+    "id": "c12",
+    "type": "quiz",
+    "question": "Kolik srdcí má chobotnice?",
+    "options": ["1", "2", "3"],
+    "answer": 2,
+    "explanation": "Chobotnice má 3 srdce a modrou krev!",
+    "emoji": "🐙",
+    "color": "#d63031"
   }
 ]
