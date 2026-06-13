@@ -4,6 +4,7 @@
     "type": "fact",
     "title": "Vesmir",
     "content": "Slnko tvori 99.8% hmotnosti celej nasej slnecnej sustavy.",
+    "image": "https://picsum.photos/seed/vesmir/600/400",
     "color": "#ff4757"
   },
   {
@@ -20,6 +21,7 @@
     "type": "fact",
     "title": "Ludske telo",
     "content": "Ludske telo obsahuje priblizne 206 kosti. Pri narodeni ich mame viac - az 270!",
+    "image": "https://picsum.photos/seed/telo/600/400",
     "color": "#2ed573"
   },
   {
@@ -36,6 +38,7 @@
     "type": "fact",
     "title": "Dinosaury",
     "content": "Dinosaury zili na Zemi priblizne 165 milionov rokov - ludia existuju iba 200 000 rokov.",
+    "image": "https://picsum.photos/seed/dino/600/400",
     "color": "#ff6b81"
   },
   {

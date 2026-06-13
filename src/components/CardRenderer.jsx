@@ -19,6 +19,7 @@ export default function CardRenderer({ card, onAnswer }) {
     <InfoCard
       title={card.title}
       content={card.content}
+      image={card.image}
       color={card.color}
     />
   )
